@@ -1,20 +1,44 @@
-section .bss 
-initial_brk:    resq 1 ;declara variavel que salva inicio da heap 
-
+section .bss
+    global initial_brk
+    initial_brk: resq 1
 
 section .text
-global _start
+    global setup_brk
+    global dismiss_brk
+    global get_brk
 
-_setup_brk:
+setup_brk:
     push rbp
-    mov rbp, rsp  ;setup da função
+    mov rbp, rsp
 
-    ;syscall arguments (brk())
-    mov   rax, 12         
-    mov   rdi, 0          
-    syscall 
+    mov rax, 12
+    xor rdi, rdi
+    syscall
 
-    ;RAX com endereço de brk
-    mov rsp, rbp
+    mov [initial_brk], rax
+
+    pop rbp
+    ret
+
+dismiss_brk:
+    push rbp
+    mov rbp, rsp
+
+    mov rdi, [initial_brk]
+
+    mov rax, 12
+    syscall
+
+    pop rbp
+    ret
+
+get_brk:
+    push rbp
+    mov rbp, rsp
+
+    mov rax, 12 
+    xor rdi, rdi
+    syscall
+
     pop rbp
     ret
