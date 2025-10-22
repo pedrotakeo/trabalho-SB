@@ -15,4 +15,5 @@ _setup_brk:
     syscall 
 
     ;RAX com endereço de brk
+    pop rbp
     ret
