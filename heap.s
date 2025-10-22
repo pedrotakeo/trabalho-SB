@@ -15,7 +15,6 @@ _setup_brk: ;retorna endereço atual de brk
     syscall 
 
     ;RAX com endereço de brk
-    mov rsp, rbp
     pop rbp
     ret
 
@@ -27,10 +26,9 @@ _dismiss_brk:
 
     ;syscall arguments (brk())
     mov   rax, 12         
-    mov   rdi, qword[initial_brk]        
+    mov   rdi, qword[initial_brk] ;valor -> muda brk p valor       
     syscall 
 
     ;RAX com endereço de brk
-    mov rsp, rbp
     pop rbp
     ret
