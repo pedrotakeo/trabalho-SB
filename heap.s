@@ -58,11 +58,28 @@ memory_alloc:
 
     xor rcx, rcx                  ; size of max block found (initialized as 0)
 
-    ;
+    ;NEW LOGIC pseudocode
 
 
+    ;;MODULARIZAR WORST FIT LOOP
+    ;While r10 is smaller than top of heap (BRK)
+        ;if (in use)
+            ;go to next block
 
-    
+        ;else if (block size smaller than required size)
+            ;go to next block
+
+        ;else if (block size fits)
+            ;rax = current address 
+            ;rcx = current block size
+
+
+    ;if(rcx != 0)
+        ;faz setup dos registros de uso e tamanho
+        ;se tamanho sobrando for maior ou igual a 10 bytes entao deica como um bloco livre, se não adiciona no tamanho total do bloco
+    ;else
+        ;aumenta tamanho da heap
+
 
 block_search:
     cmp r10, rbx
