@@ -52,17 +52,17 @@ memory_alloc:
     push rbp
     mov rbp, rsp
 
-    mov rax, QWORD [initial_brk]  ; ptr stack
-    xor rcx, rcx                    ; bool found = false
-
-    mov rbx, QWORD [current_brk]    ; current brk
+    mov rax, QWORD [initial_brk]    ; rax = largest available of block (if any)
+    mov rbx, QWORD [current_brk]    ; current brk position (end of heap)
     mov r10, QWORD [initial_brk]    ; address iterator
 
-    ; rcx == false && r10[uso] == 0 && r10[tam] >= rdi: rcx = True, rax = r10
-    
-    ; rcx == true && r10[uso] == 0 && r10[tam] > rax[tam]: rax = r10
+    xor rcx, rcx                  ; size of max block found (initialized as 0)
 
-    ; setar o bloco restante (?)
+    ;
+
+
+
+    
 
 block_search:
     cmp r10, rbx
