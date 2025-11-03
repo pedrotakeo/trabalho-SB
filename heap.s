@@ -1,5 +1,6 @@
 section .bss
     global ini_brk
+    global cur_brk
     ini_brk: resq 1
     cur_brk: resq 1
 
@@ -86,7 +87,7 @@ wfa_fini_loop:
 wfa_endloop:
 
     cmp rcx, 0
-    jne exit
+    jne wfa_exit
     mov rax, 0
 
 wfa_exit:
