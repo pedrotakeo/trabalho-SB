@@ -67,7 +67,7 @@ int main() {
     printf("valor de ini_brk: %p\n", (void*)ini_brk);
     printf("valor de get_brk(): %p \n", (void*)get_brk()); */
 
-    printf("Teste MEMORY_ALLOC()\n\n");
+    /*printf("Teste MEMORY_ALLOC()\n\n");
     setup_brk();
 
     print_heap();
@@ -128,7 +128,27 @@ int main() {
 
     dismiss_brk(); 
 
-    printf("%p\n", sbrk(0));
+    printf("%p\n", sbrk(0)); */
+
+    printf("Teste WORST-FIT\n\n");
+
+    setup_brk();
+
+    void* bloco1 = memory_alloc(3);
+    void* bloco2 = memory_alloc(5);
+    void* bloco3 = memory_alloc(4);
+
+    print_heap();
+
+    memory_free(bloco1);
+    memory_free(bloco2);
+    memory_free(bloco3);
+
+    print_heap();
+
+    void* bloco4 = memory_alloc(2);
+
+    print_heap();
 
     return 0;
 }
