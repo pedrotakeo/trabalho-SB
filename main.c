@@ -74,7 +74,9 @@ int main() {
 
     void* bloco1 = memory_alloc(23);
 
-    printf("[ Bloco 1 alocado ]\n");
+    if (bloco1)
+        printf("[ Bloco 1 alocado ]\n");
+
     printf("\n");
 
     print_heap();
@@ -87,12 +89,14 @@ int main() {
 
     void* bloco3 = memory_alloc(3);
 
-    printf("[ Bloco 3 alocado ]\n");
+    if (bloco3)
+        printf("[ Bloco 3 alocado ]\n");
     printf("\n");
 
     void* bloco4 = memory_alloc(1);
 
-    printf("[ Bloco 4 alocado ]\n");
+    if (bloco4)
+        printf("[ Bloco 4 alocado ]\n");
     printf("\n");
 
     print_heap();
@@ -112,7 +116,8 @@ int main() {
 
     void* bloco5 = memory_alloc(1); 
 
-    printf("[ bloco 5 alocado ]\n"); 
+    if (bloco5)
+        printf("[ bloco 5 alocado ]\n"); 
 
     print_heap();
 
