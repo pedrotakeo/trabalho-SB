@@ -100,6 +100,9 @@ memory_alloc:
     push rbp
     mov rbp, rsp
 
+    cmp rdi, 0
+    je alloc_exit
+
     ;already has parameter in rdi
     call worst_fit_address
 
@@ -159,8 +162,12 @@ memory_free:
     push rbp
     mov rbp, rsp
 
+    cmp rdi, 0
+    je free_exit
+
     mov BYTE [rdi], 0
 
+free_exit:
     pop rbp
     ret
 

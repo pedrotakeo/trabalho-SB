@@ -14,9 +14,9 @@ extern unsigned long int cur_brk;
 void print_heap() {
     uint64_t ini = ini_brk;
     uint64_t cur = cur_brk;
-
-    printf("  ini_brk: %p\n", (void*)ini);
-    printf("  cur_brk: %p\n", (void*)cur);
+    
+    printf("ini_brk: %p\n", (void*)ini);
+    printf("cur_brk: %p\n", (void*)cur);
 
     if (ini == cur) {
         printf("  A heap está vazia\n");
@@ -69,37 +69,61 @@ int main() {
 
     printf("Teste MEMORY_ALLOC()\n\n");
     setup_brk();
-    printf("valor de get_brk(): %p \n", (void*)get_brk());
-    printf("\n");
 
     print_heap();
 
     void* bloco1 = memory_alloc(23);
 
-    printf("Bloco 1 alocado\n");
+    printf("[ Bloco 1 alocado ]\n");
     printf("\n");
 
     print_heap();
 
     memory_free(bloco1);
 
-    printf("Bloco 1 desalocado\n\n");
+    printf("[ Bloco 1 desalocado ]\n\n");
 
     print_heap();
 
-    void* bloco3 = memory_alloc(1);
+    void* bloco3 = memory_alloc(3);
 
-    printf("Bloco 3 alocado\n");
+    printf("[ Bloco 3 alocado ]\n");
     printf("\n");
 
     void* bloco4 = memory_alloc(1);
 
-    printf("Bloco 4 alocado\n");
+    printf("[ Bloco 4 alocado ]\n");
     printf("\n");
 
     print_heap();
 
-    dismiss_brk();
+    memory_free(bloco3);
+    memory_free(bloco4);
+
+    printf("[ blocos 3 e 4 desalocados ]\n");
+
+    print_heap();
+
+    memory_free(bloco3);
+
+    printf("[ double free bloco 3 ]\n");
+
+    print_heap();
+
+    void* bloco5 = memory_alloc(1); 
+
+    printf("[ bloco 5 alocado ]\n"); 
+
+    print_heap();
+
+    printf("[ free inválido do bloco 3 ]\n"); // !!!!!!!!!!!!!!!!!
+    memory_free(bloco3);
+
+    print_heap();
+
+    dismiss_brk(); 
+
+    printf("%p\n", sbrk(0));
 
     return 0;
 }
