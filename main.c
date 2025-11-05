@@ -87,8 +87,14 @@ int main() {
 
     void *bloco5 = memory_alloc(41);
     if (bloco5) {
-        printf("[ BLOCO 4 ALOCADO ]\n");
+        printf("[ BLOCO 5 ALOCADO ]\n");
     }
+
+    print_heap();
+
+    printf("[ MEMORY_FREE(NULL) E MEMORY_ALLOC(0) ]\n");
+    memory_alloc(0);
+    memory_free(NULL);
 
     print_heap();
 
