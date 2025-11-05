@@ -43,122 +43,59 @@ void print_heap() {
 
 int main() {
 
-    
-    printf("Teste SETUP_BRK() e DISMISS_BRK()\n\n");
+    printf("***** TESTE DE ALOCAÇÃO DINÂMICA DE MEMÓRIA *****\n\n");
 
-    printf("setup_brk()");
     setup_brk();
 
-    printf("valor de ini_brk: %p\n", (void*)ini_brk);
-    printf("valor de get_brk(): %p \n", (void*)get_brk());
-    printf("\n");
-
-    printf("Teste MEMORY_ALLOC()\n\n");
-
-    print_heap();
-
-    void *bloco1 = memory_alloc(23);
+    void *bloco1 = memory_alloc(100);
 
     if (bloco1) {
-        printf("[ Bloco 1 alocado ]\n");
-
-        int* p = (int*)bloco1;
-        *p = 12345;
-
-        printf("Valor armazenado no bloco1: %d\n", *p);
+        printf("[ BLOCO 1 ALOCADO ]\n");
     }
-
-    printf("\n");
 
     print_heap();
 
+    printf("[ BLOCO 1 DESALOCADO ]\n");
     memory_free(bloco1);
 
-    printf("[ Bloco 1 desalocado ]\n\n");
-
     print_heap();
 
-    void* bloco2 = memory_alloc(3);
+    void *bloco2 = memory_alloc(50);
 
     if (bloco2) {
-        printf("[ Bloco 2 alocado ]\n");
-    
-        int* p = (int*)bloco1;
-        *p = 678910;
-
-        printf("Valor armazenado no bloco1: %d\n", *p);
+        printf("[ BLOCO 2 ALOCADO ]\n");
     }
-    printf("\n");
 
-    void* bloco3 = memory_alloc(1);
+    void *bloco3 = memory_alloc(100);
 
     if (bloco3) {
-        printf("[ Bloco 3 alocado ]\n");
-    
-        int* p = (int*)bloco1;
-        *p = 11121314;
-
-        printf("Valor armazenado no bloco1: %d\n", *p);
+        printf("[ BLOCO 3 ALOCADO ]\n");
     }
-    printf("\n");
 
     print_heap();
 
-    memory_free(bloco2);
-    memory_free(bloco3);
-
-    printf("[ blocos 2 e 3 desalocados ]\n");
-
-    print_heap();
-
-    memory_free(bloco2);
-
-    printf("[ double free bloco 2 ]\n");
+    void *bloco4 = memory_alloc(50);
+    if (bloco4) {
+        printf("[ BLOCO 4 ALOCADO ]\n");
+    }
 
     print_heap();
 
-    void* bloco4 = memory_alloc(1); 
+    memory_free(bloco4);
 
-    if (bloco4)
-        printf("[ bloco 4 alocado ]\n"); 
+    printf("[ BLOCO 4 DESALOCADO ]\n");
 
-    print_heap();
-
-    printf("[ free inválido do bloco 2 ]\n"); // !!!!!!!!!!!!!!!!!
-    memory_free(bloco2);
-
-    print_heap();
-
-    printf("[ memory_free(0) e memory_free(NULL) ]\n");
-
-    memory_free(0);
-    memory_free(NULL);
-
-    printf("Teste WORST-FIT\n\n");
-
-    void* bloco5 = memory_alloc(3);
-    void* bloco6 = memory_alloc(5);
-    void* bloco7 = memory_alloc(4);
+    void *bloco5 = memory_alloc(41);
+    if (bloco5) {
+        printf("[ BLOCO 4 ALOCADO ]\n");
+    }
 
     print_heap();
 
-    memory_free(bloco5);
-    memory_free(bloco6);
-    memory_free(bloco7);
-
-    print_heap();
-
-    printf("[ alocando bloco8 (2 bytes) ]\n");
-    void* bloco8 = memory_alloc(2);
-
-    print_heap();
-
-    memory_free(bloco8);
-
-    printf("dismiss_brk()\n");
     dismiss_brk();
-    printf("valor de ini_brk: %p\n", (void*)ini_brk);
-    printf("valor de get_brk(): %p \n", (void*)get_brk()); 
-    
+
+    printf("[ DISMISS_BRK() ]\n");
+    printf("BRK FINAL: %p\n", sbrk(0));
+
     return 0;
 }
