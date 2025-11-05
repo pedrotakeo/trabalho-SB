@@ -78,9 +78,10 @@ wfa_loop:
     mov rcx, QWORD [r10 + 1]  ;update max size
 
 wfa_fini_loop:
-    mov r9, QWORD[r10 + 1]
-    add r10, 9
+    mov r9, QWORD[r10 + 1]   ; r9 = Data Size
+    add r9, 9 
     add r10, r9
+
     jmp wfa_loop
 
 
@@ -143,7 +144,7 @@ alloc_top:
     mov rax, 12
     syscall
 
-    ;; add cmp for error here later
+    ;;////////////////////////
 
     mov QWORD [cur_brk], rax
     mov BYTE [r8], 1
@@ -153,6 +154,7 @@ alloc_top:
     jmp alloc_exit
 
 alloc_exit:
+    add rax, 9 ;;returns data portion of block exclusively
     pop rbp 
     ret
 
@@ -162,7 +164,9 @@ memory_free:
     push rbp
     mov rbp, rsp
 
-    cmp rdi, 0
+    sub rdi, 9
+
+    cmp BYTE [rdi], 0
     je free_exit
 
     mov BYTE [rdi], 0
