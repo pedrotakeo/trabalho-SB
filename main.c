@@ -66,8 +66,14 @@ int main() {
 
     void *bloco1 = memory_alloc(23);
 
-    if (bloco1)
+    if (bloco1) {
         printf("[ Bloco 1 alocado ]\n");
+
+        int* p = (int*)bloco1;
+        *p = 12345;
+
+        printf("Valor armazenado no bloco1: %d\n", *p);
+    }
 
     printf("\n");
 
@@ -81,14 +87,26 @@ int main() {
 
     void* bloco2 = memory_alloc(3);
 
-    if (bloco2)
+    if (bloco2) {
         printf("[ Bloco 2 alocado ]\n");
+    
+        int* p = (int*)bloco1;
+        *p = 678910;
+
+        printf("Valor armazenado no bloco1: %d\n", *p);
+    }
     printf("\n");
 
     void* bloco3 = memory_alloc(1);
 
-    if (bloco3)
+    if (bloco3) {
         printf("[ Bloco 3 alocado ]\n");
+    
+        int* p = (int*)bloco1;
+        *p = 11121314;
+
+        printf("Valor armazenado no bloco1: %d\n", *p);
+    }
     printf("\n");
 
     print_heap();
