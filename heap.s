@@ -48,8 +48,6 @@ get_brk:
     pop rbp
     ret
 
-
-
 worst_fit_address:  
     ;void* worst_fit_address (unsigned long int bytes(rdi), )
     push rbp
@@ -158,11 +156,12 @@ alloc_exit:
     pop rbp 
     ret
 
-
-
 memory_free:
     push rbp
     mov rbp, rsp
+
+    cmp rdi, 0
+    je free_exit
 
     sub rdi, 9
 
