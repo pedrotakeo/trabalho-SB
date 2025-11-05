@@ -2,14 +2,7 @@
 #include <unistd.h>
 #include <stdint.h>
 
-extern void setup_brk();
-extern void dismiss_brk();
-extern long get_brk();
-extern void* memory_alloc();
-extern void memory_free();
-
-extern unsigned long int ini_brk;
-extern unsigned long int cur_brk;
+#include "heap.h"
 
 void print_heap() {
     uint64_t ini = ini_brk;

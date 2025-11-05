@@ -142,8 +142,6 @@ alloc_top:
     mov rax, 12
     syscall
 
-    ;;////////////////////////
-
     mov QWORD [cur_brk], rax
     mov BYTE [r8], 1
     mov QWORD [r8 + 1],  r10  ;old brk is new register staring point
@@ -173,5 +171,3 @@ memory_free:
 free_exit:
     pop rbp
     ret
-
-
