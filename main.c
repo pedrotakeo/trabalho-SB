@@ -47,7 +47,7 @@ int main() {
 
     setup_brk();
 
-    void *bloco1 = memory_alloc(100);
+    void *bloco1 = memory_alloc(50);
 
     if (bloco1) {
         printf("[ BLOCO 1 ALOCADO ]\n");
@@ -60,13 +60,13 @@ int main() {
 
     print_heap();
 
-    void *bloco2 = memory_alloc(50);
+    void *bloco2 = memory_alloc(25);
 
     if (bloco2) {
         printf("[ BLOCO 2 ALOCADO ]\n");
     }
 
-    void *bloco3 = memory_alloc(100);
+    void *bloco3 = memory_alloc(50);
 
     if (bloco3) {
         printf("[ BLOCO 3 ALOCADO ]\n");
@@ -74,7 +74,7 @@ int main() {
 
     print_heap();
 
-    void *bloco4 = memory_alloc(50);
+    void *bloco4 = memory_alloc(25);
     if (bloco4) {
         printf("[ BLOCO 4 ALOCADO ]\n");
     }
@@ -85,7 +85,9 @@ int main() {
 
     printf("[ BLOCO 4 DESALOCADO ]\n");
 
-    void *bloco5 = memory_alloc(41);
+    print_heap();
+
+    void *bloco5 = memory_alloc(16);
     if (bloco5) {
         printf("[ BLOCO 5 ALOCADO ]\n");
     }
