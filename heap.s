@@ -154,6 +154,11 @@ alloc_exit:
     pop rbp 
     ret
 
+alloc_error:
+    mov rax, 0
+    pop rbp
+    ret
+
 memory_free:
     push rbp
     mov rbp, rsp
