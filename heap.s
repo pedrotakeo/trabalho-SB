@@ -166,6 +166,12 @@ memory_free:
     cmp rdi, 0                      ; tests invalid free
     je free_error
 
+    cmp rdi, QWORD [ini_brk]
+    jl free_error
+
+    cmp rdi, QWORD [cur_brk]
+    jg free_error
+
     sub rdi, 9
 
     cmp BYTE [rdi], 0
@@ -174,6 +180,8 @@ memory_free:
     mov BYTE [rdi], 0
 
 free_exit:
+    mov rax, 0
+
     pop rbp
     ret
 
