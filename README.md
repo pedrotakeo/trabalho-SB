@@ -1,5 +1,5 @@
 # Trabalho Final de Software Básico
-Camila Shibata (GRR20245211) | Pedro Shima (GRR20240000)
+Camila Shibata (GRR20245211) | Pedro Shima (GRR20240627)
 
 ## Detalhes de Implementação
 Para utilizar as funções implementadas, não deve haver mistura com funções da *libc*.  
