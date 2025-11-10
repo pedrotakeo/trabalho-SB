@@ -100,7 +100,7 @@ memory_alloc:
     mov rbp, rsp
 
     cmp rdi, 0
-    je alloc_exit
+    je alloc_error
 
     ;already has parameter in rdi
     call worst_fit_address
